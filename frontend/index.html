@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CampusSphere AI | Student Intelligence Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brandmark">CS</div><div><b>CampusSphere</b><span>AI Campus OS</span></div></div>
+  <nav>
+    <button class="nav active" data-page="overview">⌂ <span>Overview</span></button>
+    <button class="nav" data-page="students">◉ <span>Students</span></button>
+    <button class="nav" data-page="courses">▣ <span>Courses</span></button>
+    <button class="nav" data-page="enrollments">◇ <span>Enrollments</span></button>
+    <button class="nav" data-page="assistant">✦ <span>AI Assistant</span><em>AI</em></button>
+  </nav>
+  <div class="side-bottom"><div class="status-dot"></div><div><b>System online</b><small>FastAPI · SQLite · ChromaDB</small></div></div>
+</aside>
+
+<main class="main">
+<header><div><p class="eyebrow">STUDENT INTELLIGENCE PLATFORM</p><h1 id="pageTitle">Overview</h1></div>
+<div class="header-actions"><a href="/docs" target="_blank" class="api-btn">API Docs ↗</a><div class="avatar">MS</div></div></header>
+
+<section id="overview" class="page active">
+  <div class="hero"><div><span class="pill">✦ AI-POWERED CAMPUS</span><h2>One workspace for your<br><span>student ecosystem.</span></h2><p>Manage records, courses and enrollments while asking natural-language questions through Gemini + LangGraph.</p><button class="primary" onclick="showPage('assistant')">Ask CampusSphere AI →</button></div><div class="hero-orb"><div class="orb-inner">✦</div></div></div>
+  <div class="stats" id="stats"></div>
+  <div class="grid2"><div class="panel"><div class="panel-head"><div><h3>Department distribution</h3><p>Current student population</p></div></div><div id="departments" class="bars"></div></div>
+  <div class="panel"><div class="panel-head"><div><h3>Recent students</h3><p>Latest records in the database</p></div><button class="text-btn" onclick="showPage('students')">View all →</button></div><div id="recent" class="mini-list"></div></div></div>
+</section>
+
+<section id="students" class="page"><div class="toolbar"><div><h2>Students</h2><p>Complete CRUD management for student records.</p></div><div><input id="studentSearch" class="search" placeholder="Search students..." oninput="filterStudents()"><button class="primary small" onclick="openStudentModal()">+ Add student</button></div></div><div class="panel table-wrap"><table><thead><tr><th>Student</th><th>Department</th><th>Semester</th><th>CGPA</th><th>Contact</th><th>Actions</th></tr></thead><tbody id="studentsBody"></tbody></table></div></section>
+
+<section id="courses" class="page"><div class="toolbar"><div><h2>Courses</h2><p>Course catalog and credit management.</p></div><button class="primary small" onclick="openCourseModal()">+ Add course</button></div><div class="panel table-wrap"><table><thead><tr><th>Code</th><th>Course</th><th>Credits</th><th>Actions</th></tr></thead><tbody id="coursesBody"></tbody></table></div></section>
+
+<section id="enrollments" class="page"><div class="toolbar"><div><h2>Enrollments</h2><p>Student-to-course enrollment records.</p></div><button class="primary small" onclick="openEnrollmentModal()">+ Add enrollment</button></div><div class="panel table-wrap"><table><thead><tr><th>ID</th><th>Student</th><th>Course</th><th>Grade</th><th>Actions</th></tr></thead><tbody id="enrollmentsBody"></tbody></table></div></section>
+
+<section id="assistant" class="page"><div class="assistant-head"><div><span class="pill">✦ LANGGRAPH + GEMINI</span><h2>CampusSphere AI Assistant</h2><p>Ask questions about students in natural language. Answers are grounded in ChromaDB retrieval.</p></div></div>
+<div class="chat panel"><div id="messages" class="messages"><div class="bubble ai"><b>CampusSphere AI</b><br>Hello! Ask me about students, departments, semesters or CGPA.</div></div><div class="suggestions"><button onclick="ask('Show all Computer Science students')">Computer Science students</button><button onclick="ask('Who has a CGPA above 8.5?')">CGPA above 8.5</button><button onclick="ask('Show students in semester 8')">Semester 8</button></div><form onsubmit="sendChat(event)" class="chat-form"><input id="chatInput" placeholder="Ask about the student database..." autocomplete="off"><button>Send ✦</button></form></div></section>
+</main></div>
+
+<div id="modal" class="modal"><div class="modal-card"><button class="close" onclick="closeModal()">×</button><h3 id="modalTitle">Add</h3><form id="modalForm" onsubmit="submitModal(event)"></form></div></div>
+<div id="toast" class="toast"></div>
+<script src="/static/app.js"></script>
+</body></html>
