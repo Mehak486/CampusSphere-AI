@@ -1,79 +1,48 @@
-# CampusSphere AI — Student Database Application System
+# 🎓 CampusSphere AI — Student Database Application System
 
-A professional Final Year Internship Project built around a modular FastAPI backend and an aesthetic web dashboard.
+An AI-powered Student Database Application System built with **FastAPI, SQLite, Gemini API, LangGraph and ChromaDB**.
 
-## ✨ Project requirements covered
+## 🚀 Live Demo
 
-- Modular backend architecture
-- Student, Course and Enrollment CRUD
-- FastAPI REST APIs
-- Swagger / OpenAPI + ReDoc
-- Deployable Docker + Render configuration
-- Gemini API integration
-- LangGraph AI chatbot
-- ChromaDB vector database for semantic student retrieval
-- Dashboard UI with analytics and responsive design
-- Seed data and one-command startup workflow
+* **Dashboard:** https://campussphere-ai-aqxw.onrender.com/
+* **Swagger API:** https://campussphere-ai-aqxw.onrender.com/docs
+* **ReDoc:** https://campussphere-ai-aqxw.onrender.com/redoc
+* **Health Check:** https://campussphere-ai-aqxw.onrender.com/health
 
-## 🧠 AI architecture
+## ✨ Features
 
-`User question → LangGraph → ChromaDB semantic retrieval → Gemini → grounded response`
+* Student, Course and Enrollment CRUD
+* FastAPI REST APIs
+* Interactive Swagger documentation
+* Responsive web dashboard
+* Gemini-powered AI chatbot
+* LangGraph chatbot workflow
+* ChromaDB vector search
+* SQLite database
+* API health monitoring
+* Render deployment
+* Docker support
 
-The chatbot is instructed to use retrieved database context and avoid inventing student records.
+## 🛠️ Tech Stack
 
-## 🛠 Tech stack
+**Backend:** Python, FastAPI, SQLAlchemy
+**Database:** SQLite
+**AI:** Gemini API, LangGraph
+**Vector Database:** ChromaDB
+**Frontend:** HTML, CSS, JavaScript
+**Deployment:** Render
+**Documentation:** Swagger / OpenAPI, ReDoc
 
-**Backend:** Python, FastAPI, SQLAlchemy, Pydantic  
-**Database:** SQLite (portable default)  
-**AI:** Gemini API, LangGraph  
-**Vector DB:** ChromaDB  
-**Frontend:** HTML, CSS, JavaScript  
-**Deployment:** Docker, Render
-
-## ▶ Run locally on Windows CMD
-
-```cmd
-cd /d C:\Users\mehak\Downloads\CampusSphere-AI\student-database-backend
-python -m venv venv
-venv\Scripts\activate
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-copy .env.example .env
-python scripts\seed_data.py
-python -m uvicorn app.main:app --reload --port 8000
-```
-
-Open:
-- Dashboard: http://127.0.0.1:8000/
-- Swagger: http://127.0.0.1:8000/docs
-- ReDoc: http://127.0.0.1:8000/redoc
-- Health: http://127.0.0.1:8000/health
-
-### Gemini setup
-
-Edit `.env` and set:
-
-```env
-GEMINI_API_KEY=your_real_key
-GEMINI_MODEL=gemini-2.5-flash
-```
-
-Without a Gemini key, the dashboard and CRUD APIs still work; only AI chat requires the key.
-
-## 📁 Structure
+## 📁 Project Structure
 
 ```text
-student-database-backend/
+CampusSphere-AI/
 ├── app/
-│   ├── routers/             # Students, courses, enrollments
+│   ├── routers/
 │   ├── services/
-│   │   ├── chatbot/         # LangGraph workflow
-│   │   ├── gemini_service.py
-│   │   └── vector_service.py
-│   ├── crud.py
-│   ├── database.py
 │   ├── models.py
 │   ├── schemas.py
+│   ├── database.py
 │   └── main.py
 ├── frontend/
 │   ├── index.html
@@ -82,41 +51,124 @@ student-database-backend/
 ├── scripts/
 │   └── seed_data.py
 ├── data/
+├── .env.example
 ├── Dockerfile
 ├── render.yaml
 ├── requirements.txt
 └── README.md
 ```
 
-## 🔌 API highlights
+## ⚙️ Run Locally
 
-| Method | Endpoint | Purpose |
-|---|---|---|
-| GET | `/api/students` | List students |
-| POST | `/api/students` | Create student |
-| GET | `/api/students/{id}` | Get student |
-| PUT | `/api/students/{id}` | Update student |
-| DELETE | `/api/students/{id}` | Delete student |
-| GET/POST | `/api/courses` | Course management |
-| GET/POST | `/api/enrollments` | Enrollment management |
-| POST | `/api/chat` | AI student database assistant |
-| GET | `/api/dashboard/stats` | Dashboard analytics |
+### 1. Clone
 
-## ☁️ Deployment
+```bash
+git clone https://github.com/Mehak486/CampusSphere-AI.git
+cd CampusSphere-AI
+```
 
-The included `Dockerfile` and `render.yaml` are ready for a Render web service. Add `GEMINI_API_KEY` as a secret environment variable before using the AI chatbot in production.
+### 2. Create Virtual Environment
 
-## 📌 Submission checklist
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
 
-1. Test `/`, `/docs`, CRUD endpoints and `/api/chat`.
-2. Add your `.env` to `.gitignore` and never commit the real API key.
-3. Push the complete project to GitHub.
-4. Confirm the repository is accessible.
-5. Submit the GitHub repository link through the official Google Form before the assigned deadline.
+### 3. Install Dependencies
 
-## 👩‍💻 Author
+```bash
+pip install -r requirements.txt
+```
 
-**Mehak Sharma**  
-B.Tech Computer Science Graduate  
-GitHub: https://github.com/Mehak486  
-LinkedIn: https://linkedin.com/in/mehak-112704300
+### 4. Configure Environment
+
+Create `.env`:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+GEMINI_MODEL=gemini-3.6-flash
+```
+
+### 5. Seed Database
+
+```bash
+python scripts/seed_data.py
+```
+
+### 6. Start Server
+
+```bash
+python -m uvicorn app.main:app --reload --port 8000
+```
+
+Open:
+
+```text
+http://127.0.0.1:8000/
+http://127.0.0.1:8000/docs
+```
+
+## 🔗 Main API Endpoints
+
+```text
+GET    /api/students
+POST   /api/students
+GET    /api/students/{id}
+PUT    /api/students/{id}
+DELETE /api/students/{id}
+
+GET    /api/courses
+POST   /api/courses
+PUT    /api/courses/{id}
+DELETE /api/courses/{id}
+
+GET    /api/enrollments
+POST   /api/enrollments
+PUT    /api/enrollments/{id}
+DELETE /api/enrollments/{id}
+
+POST   /api/chat
+GET    /health
+```
+
+## 🤖 AI Chatbot
+
+The integrated AI chatbot uses:
+
+* **Gemini API** for natural-language responses
+* **LangGraph** for chatbot workflow
+* **ChromaDB** for student information retrieval
+
+Example queries:
+
+```text
+How many students are in Computer Science?
+Show students with CGPA above 8.
+Which courses are available?
+Show student enrollment information.
+```
+
+## 🌐 Deployment
+
+The application is deployed on **Render** and provides:
+
+* Live Dashboard
+* REST APIs
+* Swagger documentation
+* AI chatbot
+* Health monitoring
+
+## 👩‍💻 Developer
+
+**Mehak Sharma**
+
+B.Tech Computer Science Engineering Graduate
+
+* GitHub: https://github.com/Mehak486
+* LinkedIn: https://linkedin.com/in/mehak-112704300
+
+## 📄 Project
+
+**Final Year Internship Project — Student Database Application System**
+
+Built using modern backend, AI and database technologies.
